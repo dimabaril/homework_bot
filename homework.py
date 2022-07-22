@@ -84,7 +84,7 @@ def send_message(bot, message):
     logging.info(f'Попытка отправки сообщения: {message}')
     try:
         bot.send_message(TELEGRAM_CHAT_ID, message)
-    except:
+    except Exception:
         raise exceptions.SendMessageError
     else:
         logging.info(f'Удачная отправка сообщения: {message}')
@@ -98,6 +98,7 @@ def main():
         # и нам не надо импортировать import sys
         sys.exit('Отсутствуют обязательные переменные окружения!')
     bot = telegram.Bot(token=TELEGRAM_TOKEN)
+    bot.send_message(TELEGRAM_CHAT_ID, '!!!bot started!!!')
     current_timestamp = int(time.time())
     # current_timestamp = 1655577239  # минус месяц для дебага
     while True:
